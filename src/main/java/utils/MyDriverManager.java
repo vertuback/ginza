@@ -2,6 +2,7 @@ package utils;
 
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,8 +18,9 @@ public class MyDriverManager {
     public static WebDriver initChromeDriver() {
         Configuration.browser = "chrome";
         Configuration.browserVersion = "79";
+
         //Configuration.browserBinary = "./lib/chromedriver.exe";
-        ChromeDriverManager.getInstance().setup();
+        WebDriverManager.chromedriver().setup();
         DesiredCapabilities browser = new DesiredCapabilities();
         browser.setBrowserName("chrome");
         browser.setCapability("enableVNC", true);

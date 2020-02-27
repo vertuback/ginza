@@ -1,4 +1,6 @@
+import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,17 +14,36 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class Tests extends Helpers {
+    WebDriver driver;
+
 
     @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().version("79.0.3945.36").setup();
+        open("https://google.com");
+        WebDriverRunner.getWebDriver().manage().window().maximize();
+       //Configuration.browserSize = "1920х1080";
+
+
+//
+//
+
+
+
+
         //System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
 //        System.setProperty("chromeDriverVersion", "79");
 //        ChromeDriverManager.getInstance().setup();
 //        Configuration.browserVersion = "79";
 //        System.out.println(Configuration.browserBinary.toString() + "qwerqwerqwer");
     }
-
+//    @BeforeMethod
+//    public void beforeMethod()
+//    {
+//        System.out.println( " control is inside beforeMethod now");
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//    }
     @Test
     public void UserCanSearch(){
 //        open(Configuration.baseUrl);
