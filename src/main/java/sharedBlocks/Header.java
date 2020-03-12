@@ -3,6 +3,7 @@ package sharedBlocks;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import pages.MainPage;
 import utils.Config;
 
@@ -53,52 +54,8 @@ public class Header {
         btnSearch.click();
         return this;
     }
-    @Step("Login as a regular user")
-    public Header loginAsRegularUser(){
-        if (!lnkMainLogo.isDisplayed()){
-            open(Config.MAIN_URL);
-        }
-        for (int a = 0; a < 5; a++) {
-           if (lnkLoggaIn.isDisplayed()){
-               lnkLoggaIn.click();
-               txtLogin.setValue(Config.REGULAR_USER_LOGIN);
-               txtPassword.setValue(Config.REGULAR_USER_PASSWORD);
-               btnLogin.click();
-               break;
-           }
-           if (!lnkLoggaIn.isDisplayed() && !lnkLoggaUt.isDisplayed()){
-                openMainPage(Config.MAIN_URL);
-           }
-           if (lnkLoggaUt.isDisplayed()){
-                lnkLoggaUt.click();
-           }
-        }
-        return this;
-    }
-    @Step("Login as a company user")
-    public Header loginAsCompanyUser(){
-        if (!lnkMainLogo.isDisplayed()){
-            open(Config.MAIN_URL);
-        }
-        for (int a = 0; a < 5; a++) {
-            if (lnkLoggaIn.isDisplayed()){
-                lnkLoggaIn.click();
-                txtLogin.setValue(Config.COMPANY_USER_LOGIN);
-                txtPassword.setValue(Config.COMPANY_USER_PASSWORD);
-                btnLogin.click();
-                break;
-            }
-            if (!lnkLoggaIn.isDisplayed() && !lnkLoggaUt.isDisplayed()){
-                openMainPage(Config.MAIN_URL);
-            }
-            if (lnkLoggaUt.isDisplayed()){
-                lnkLoggaUt.click();
-            }
-        }
-        return this;
-    }
     @Step("Login as a random user")
-    public Header loginAsRandomUser(String login, String password){
+    public Header loginAsUser(String login, String password){
         if (!lnkMainLogo.isDisplayed()){
             open(Config.MAIN_URL);
         }

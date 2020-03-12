@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import sharedBlocks.Header;
 import utils.Config;
 import utils.Helpers;
 
@@ -20,34 +21,23 @@ public class Tests extends Helpers {
     @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().version("79.0.3945.36").setup();
-        open("https://google.com");
+        open(Config.MAIN_URL);
         WebDriverRunner.getWebDriver().manage().window().maximize();
-       //Configuration.browserSize = "1920х1080";
-
-
-//
-//
-
-
-
-
-        //System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
-//        System.setProperty("chromeDriverVersion", "79");
-//        ChromeDriverManager.getInstance().setup();
-//        Configuration.browserVersion = "79";
-//        System.out.println(Configuration.browserBinary.toString() + "qwerqwerqwer");
     }
-//    @BeforeMethod
-//    public void beforeMethod()
-//    {
-//        System.out.println( " control is inside beforeMethod now");
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//    }
+
+    @Test
+    public void RegularUserLogin() {
+        new Header().loginAsUser(Config.REGULAR_USER_LOGIN, Config.REGULAR_USER_PASSWORD);
+
+    }
+
+    @Test
+    public void CompanyUserLogin() {
+        new Header().loginAsUser(Config.COMPANY_USER_LOGIN, Config.COMPANY_USER_PASSWORD);
+    }
+
     @Test
     public void UserCanSearch(){
-//        open(Configuration.baseUrl);
-        open(Config.MAIN_URL);
 //        new MainPage().fillSmthInSearch("abba");
 //        new SearchPage().checkThatSearchPageIsLoading();
         open(Config.MAIN_URL+"music");
